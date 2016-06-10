@@ -35,7 +35,7 @@ namespace ExecutePSScript
 
         private void btnBrowse_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            OpenFileDialog fd = new OpenFileDialog();
+            var fd = new OpenFileDialog();
             fd.AddExtension = false;
             fd.CheckFileExists = true;
             fd.CheckPathExists = true;

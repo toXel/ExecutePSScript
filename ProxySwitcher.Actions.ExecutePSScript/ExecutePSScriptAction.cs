@@ -37,9 +37,38 @@ namespace ExecutePSScript
 
         public override void Activate(Guid networkId, string networkName)
         {
-            string mysetting1 = Settings[networkId + "_Setting1"];
+            string scriptPath = Settings[networkId + "_ScriptPath"];
+            string scriptContent;
 
-            // do something here
+            // Cancel if no script is choosen
+            if (string.IsNullOrWhiteSpace(scriptPath))
+            {
+                return;
+            }
+
+            // Cancel is script doesn't exist
+            if (!File.Exists(scriptPath))
+            {
+                if (HostApplication != null)
+                {
+                    HostApplication.SetStatusText(this, "Script doesn't exist", true);
+                }
+
+                return;
+            }
+
+            // Read script content
+            using (var sr = new StreamReader(scriptPath))
+            {
+                scriptContent = sr.ReadToEnd();
+            }
+
+            // Invoke PowerShell script
+            using (var ps = PowerShell.Create())
+            {
+                ps.AddScript(scriptContent);
+                var output = ps.Invoke();
+            }
         }
 
         public override UserControl GetWindowControl(Guid networkId, string networkName)
