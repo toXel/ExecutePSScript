@@ -1,23 +1,52 @@
 using System;
 using System.Windows.Controls;
+using Microsoft.Win32;
 
-namespace ClassLibrary1
+namespace ExecutePSScript
 {
     public partial class ExecutePSScriptSettings : UserControl
     {
-        private Guid networkId;
-        private ExecutePSScriptAction myAction;
+        Guid networkId;
+        ExecutePSScriptAction executePSScriptAction;
 
         public ExecutePSScriptSettings()
         {
             InitializeComponent();
         }
 
-        public ExecutePSScriptSettings(Guid networkId, ExecutePSScriptAction myAction)
-            : this()
+        public ExecutePSScriptSettings(ExecutePSScriptAction executePSScriptAction, Guid networkId) : this()
         {
             this.networkId = networkId;
-            this.myAction = myAction;
+            this.executePSScriptAction = executePSScriptAction;
+        }
+
+        public ExecutePSScriptSettings(ExecutePSScriptAction executePSScriptAction, Guid networkId, string scriptPath) : this()
+        {
+            this.networkId = networkId;
+            this.executePSScriptAction = executePSScriptAction;
+
+            txtScriptPath.Text = scriptPath;
+        }
+
+        private void btnSave_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            executePSScriptAction.SaveSetting(networkId, txtScriptPath.Text);
+        }
+
+        private void btnBrowse_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            OpenFileDialog fd = new OpenFileDialog();
+            fd.AddExtension = false;
+            fd.CheckFileExists = true;
+            fd.CheckPathExists = true;
+            fd.Filter = "*.*|*.*";
+            fd.Multiselect = false;
+            fd.ShowReadOnly = false;
+            fd.Title = "";
+            fd.ShowDialog();
+
+            if (!string.IsNullOrWhiteSpace(fd.FileName))
+                txtScriptPath.Text = fd.FileName;
         }
     }
 }

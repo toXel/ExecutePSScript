@@ -1,10 +1,10 @@
 using System;
 using System.IO;
-using System.Reflection;
 using System.Windows.Controls;
 using ProxySwitcher.Common;
+using System.Management.Automation;
 
-namespace ClassLibrary1
+namespace ExecutePSScript
 {
     [SwitcherActionAddIn]
     public class ExecutePSScriptAction : SwitcherActionBase
@@ -20,6 +20,11 @@ namespace ClassLibrary1
             get { return string.Empty; }
         }
 
+        public override string Group
+        {
+            get { return "Script"; }
+        }
+
         public override Stream IconResourceStream
         {
             get { return null; }
@@ -28,12 +33,6 @@ namespace ClassLibrary1
         public override Guid Id
         {
             get { return new Guid("5010844E-AFB1-4048-8EAE-13EB0962B863"); }
-        }
-
-        public override string Group
-        {
-            // Actions which should shown together can be grouped by this property.
-            get { return "Script"; }
         }
 
         public override void Activate(Guid networkId, string networkName)
@@ -45,15 +44,27 @@ namespace ClassLibrary1
 
         public override UserControl GetWindowControl(Guid networkId, string networkName)
         {
-            return new ExecutePSScriptSettings(networkId, this);
+            string scriptPath = Settings[networkId + "_ScriptPath"];
+
+            // When no script is selected
+            if (string.IsNullOrWhiteSpace(scriptPath))
+            {
+                return new ExecutePSScriptSettings(this, networkId);
+            }
+
+            return new ExecutePSScriptSettings(this, networkId, scriptPath);
         }
 
-        internal void SaveSetting(Guid networkId, string settingValue)
+        internal void SaveSetting(Guid networkId, string scriptPath)
         {
-            this.Settings[networkId + "_Setting1"] = settingValue;
+            Settings[networkId + "_ScriptPath"] = scriptPath;
 
-            // Call this after you have changed one or more settings
-            this.OnSettingsChanged();
+            OnSettingsChanged();
+
+            if (HostApplication != null)
+            {
+                HostApplication.SetStatusText(this, "Saved");
+            }
         }
     }
 }
