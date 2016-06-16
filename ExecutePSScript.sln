@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProxySwitcher.Actions.ExecutePSScript", "ProxySwitcher.Actions.ExecutePSScript\ProxySwitcher.Actions.ExecutePSScript.csproj", "{3967148C-4826-4FCE-B4E4-D701CB23BC8A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExecutePSScript", "ExecutePSScript\ExecutePSScript.csproj", "{3967148C-4826-4FCE-B4E4-D701CB23BC8A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

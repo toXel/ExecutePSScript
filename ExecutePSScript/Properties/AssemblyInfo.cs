@@ -5,8 +5,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ProxySwitcher Execute PS Script")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Execute PS Script")]
+[assembly: AssemblyDescription("Execute PowerShell script AddIn for ProxySwitcher")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("")]
