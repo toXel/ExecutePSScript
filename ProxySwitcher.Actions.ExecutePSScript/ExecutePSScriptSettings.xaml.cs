@@ -42,11 +42,13 @@ namespace ExecutePSScript
             fd.Filter = "*.*|*.*";
             fd.Multiselect = false;
             fd.ShowReadOnly = false;
-            fd.Title = "";
+            fd.Title = "Select PowerShell script";
             fd.ShowDialog();
 
             if (!string.IsNullOrWhiteSpace(fd.FileName))
+            {
                 txtScriptPath.Text = fd.FileName;
+            }
         }
     }
 }

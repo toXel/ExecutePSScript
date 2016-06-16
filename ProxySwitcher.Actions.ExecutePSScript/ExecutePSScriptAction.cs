@@ -40,18 +40,12 @@ namespace ExecutePSScript
             string scriptPath = Settings[networkId + "_ScriptPath"];
             string scriptContent;
 
-            // Cancel if no script is choosen
-            if (string.IsNullOrWhiteSpace(scriptPath))
-            {
-                return;
-            }
-
-            // Cancel is script doesn't exist
-            if (!File.Exists(scriptPath))
+            // Cancel if script path is empty or script doesn't exist
+            if (string.IsNullOrWhiteSpace(scriptPath) || !File.Exists(scriptPath))
             {
                 if (HostApplication != null)
                 {
-                    HostApplication.SetStatusText(this, "Script doesn't exist", true);
+                    HostApplication.SetStatusText(this, "Script is empty or doesn't exist", true);
                 }
 
                 return;
@@ -67,7 +61,7 @@ namespace ExecutePSScript
             using (var ps = PowerShell.Create())
             {
                 ps.AddScript(scriptContent);
-                var output = ps.Invoke();
+                ps.Invoke();
             }
         }
 
