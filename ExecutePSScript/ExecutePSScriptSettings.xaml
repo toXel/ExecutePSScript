@@ -3,10 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:prop="clr-namespace:ExecutePSScriptAction"
              mc:Ignorable="d" Height="300" Width="400">
     <Grid>
-        <Button Content="Save" Height="23" HorizontalAlignment="Left" Margin="313,265,0,0" Name="btnSave" VerticalAlignment="Top" Width="75" Click="btnSave_Click" />
-        <Label Content="PowerShell script:" Height="28" HorizontalAlignment="Left" Margin="12,12,0,0" Name="label1" VerticalAlignment="Top" Width="120" />
+        <Button Content="{x:Static prop:DefaultResources.Save_Button}" Height="23" HorizontalAlignment="Left" Margin="313,265,0,0" Name="btnSave" VerticalAlignment="Top" Width="75" Click="btnSave_Click" />
+        <Label Content="{x:Static prop:DefaultResources.Script_Label}" Height="28" HorizontalAlignment="Left" Margin="12,12,0,0" Name="label1" VerticalAlignment="Top" Width="120" />
         <TextBox HorizontalAlignment="Left" Margin="12,46,0,0" Name="txtScriptPath" VerticalAlignment="Top" Width="276" />
         <Button Content="..." Height="18" HorizontalAlignment="Left" Margin="288,46,0,0" Name="btnBrowse" VerticalAlignment="Top" Width="20" Click="btnBrowse_Click" />
     </Grid>

@@ -3,6 +3,7 @@ using System.IO;
 using System.Windows.Controls;
 using ProxySwitcher.Common;
 using System.Management.Automation;
+using ExecutePSScriptAction;
 
 namespace ExecutePSScript
 {
@@ -11,7 +12,7 @@ namespace ExecutePSScript
     {
         public override string Name
         {
-            get { return "Execute PowerShell script"; }
+            get { return DefaultResources.ExecutePSScript_Name ; }
         }
 
         public override string Description
@@ -86,7 +87,7 @@ namespace ExecutePSScript
 
             if (HostApplication != null)
             {
-                HostApplication.SetStatusText(this, "Saved");
+                HostApplication.SetStatusText(this, DefaultResources.Status_Saved);
             }
         }
     }

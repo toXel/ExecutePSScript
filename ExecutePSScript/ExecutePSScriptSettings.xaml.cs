@@ -42,7 +42,6 @@ namespace ExecutePSScript
             fd.Filter = "*.*|*.*";
             fd.Multiselect = false;
             fd.ShowReadOnly = false;
-            fd.Title = "Select PowerShell script";
             fd.ShowDialog();
 
             if (!string.IsNullOrWhiteSpace(fd.FileName))
