@@ -1,6 +1,7 @@
 using System;
 using System.Windows.Controls;
 using Microsoft.Win32;
+using ExecutePSScriptAction;
 
 namespace ExecutePSScript
 {
@@ -42,6 +43,7 @@ namespace ExecutePSScript
             fd.Filter = "*.*|*.*";
             fd.Multiselect = false;
             fd.ShowReadOnly = false;
+            fd.Title = DefaultResources.FileDialog_Title;
             fd.ShowDialog();
 
             if (!string.IsNullOrWhiteSpace(fd.FileName))

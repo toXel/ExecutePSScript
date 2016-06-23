@@ -70,6 +70,15 @@ namespace ExecutePSScriptAction {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select PowerShell script.
+        /// </summary>
+        public static string FileDialog_Title {
+            get {
+                return ResourceManager.GetString("FileDialog_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string Save_Button {

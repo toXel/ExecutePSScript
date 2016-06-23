@@ -120,6 +120,9 @@
   <data name="ExecutePSScript_Name" xml:space="preserve">
     <value>Execute PowerShell script</value>
   </data>
+  <data name="FileDialog_Title" xml:space="preserve">
+    <value>Select PowerShell script</value>
+  </data>
   <data name="Save_Button" xml:space="preserve">
     <value>Save</value>
   </data>
