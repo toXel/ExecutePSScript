@@ -59,7 +59,7 @@ namespace ExecutePSScript
             using (var ps = PowerShell.Create())
             {
                 ps.AddScript(scriptContent);
-                ps.Invoke();
+                ps.BeginInvoke();
             }
         }
 
