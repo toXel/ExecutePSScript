@@ -7,8 +7,8 @@ namespace ExecutePSScript
 {
     public partial class ExecutePSScriptSettings : UserControl
     {
-        Guid networkId;
-        ExecutePSScriptAction executePSScriptAction;
+        private Guid networkId;
+        private ExecutePSScriptAction executePSScriptAction;
 
         public ExecutePSScriptSettings()
         {
@@ -29,21 +29,23 @@ namespace ExecutePSScript
             txtScriptPath.Text = scriptPath;
         }
 
-        private void btnSave_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void BtnSave_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             executePSScriptAction.SaveSetting(networkId, txtScriptPath.Text);
         }
 
-        private void btnBrowse_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void BtnBrowse_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            var fd = new OpenFileDialog();
-            fd.AddExtension = false;
-            fd.CheckFileExists = true;
-            fd.CheckPathExists = true;
-            fd.Filter = "*.*|*.*";
-            fd.Multiselect = false;
-            fd.ShowReadOnly = false;
-            fd.Title = DefaultResources.FileDialog_Title;
+            var fd = new OpenFileDialog()
+            {
+                AddExtension = false,
+                CheckFileExists = true,
+                CheckPathExists = true,
+                Filter = "*.*|*.*",
+                Multiselect = false,
+                ShowReadOnly = false,
+                Title = DefaultResources.FileDialog_Title
+            };
             fd.ShowDialog();
 
             if (!string.IsNullOrWhiteSpace(fd.FileName))

@@ -38,16 +38,13 @@ namespace ExecutePSScript
 
         public override void Activate(Guid networkId, string networkName)
         {
-            string scriptPath = Settings[networkId + "_ScriptPath"];
+            string scriptPath = Settings[networkId.ToString() + "_ScriptPath"];
             string scriptContent;
 
             // Cancel if script path is empty or script doesn't exist
             if (string.IsNullOrWhiteSpace(scriptPath) || !File.Exists(scriptPath))
             {
-                if (HostApplication != null)
-                {
-                    HostApplication.SetStatusText(this, "Script is empty or doesn't exist", true);
-                }
+                HostApplication?.SetStatusText(this, "Script is empty or doesn't exist", true);
 
                 return;
             }
@@ -68,7 +65,7 @@ namespace ExecutePSScript
 
         public override UserControl GetWindowControl(Guid networkId, string networkName)
         {
-            string scriptPath = Settings[networkId + "_ScriptPath"];
+            string scriptPath = Settings[networkId.ToString() + "_ScriptPath"];
 
             // When no script is selected
             if (string.IsNullOrWhiteSpace(scriptPath))
@@ -81,14 +78,11 @@ namespace ExecutePSScript
 
         internal void SaveSetting(Guid networkId, string scriptPath)
         {
-            Settings[networkId + "_ScriptPath"] = scriptPath;
+            Settings[networkId.ToString() + "_ScriptPath"] = scriptPath;
 
             OnSettingsChanged();
 
-            if (HostApplication != null)
-            {
-                HostApplication.SetStatusText(this, DefaultResources.Status_Saved);
-            }
+            HostApplication?.SetStatusText(this, DefaultResources.Status_Saved);
         }
     }
 }
