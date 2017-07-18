@@ -10,6 +10,9 @@ namespace ExecutePSScript
     [SwitcherActionAddIn]
     public class ExecutePSScriptAction : SwitcherActionBase
     {
+
+        private PowerShell ps;
+
         public override string Name
         {
             get { return DefaultResources.ExecutePSScript_Name ; }
@@ -56,11 +59,14 @@ namespace ExecutePSScript
             }
 
             // Invoke PowerShell script
-            using (var ps = PowerShell.Create())
-            {
-                ps.AddScript(scriptContent);
-                ps.BeginInvoke();
-            }
+            ps = PowerShell.Create();
+            ps.AddScript(scriptContent);
+            ps.BeginInvoke<PSObject>(null, null, AsyncInvoke, null);
+        }
+
+        void AsyncInvoke(IAsyncResult ar)
+        {
+            ps.EndInvoke(ar);
         }
 
         public override UserControl GetWindowControl(Guid networkId, string networkName)
